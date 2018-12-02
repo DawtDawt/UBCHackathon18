@@ -10,6 +10,7 @@ export default class App extends React.Component {
 
   render() {
     if (!this.state.isLoadingComplete && !this.props.skipLoadingScreen) {
+      // continue loading
       return (
         <AppLoading
           startAsync={this._loadResourcesAsync}
@@ -18,6 +19,7 @@ export default class App extends React.Component {
         />
       );
     } else {
+      // jump to AppNavigator
       return (
         <View style={styles.container}>
           {Platform.OS === 'ios' && <StatusBar barStyle="default" />}
@@ -28,6 +30,7 @@ export default class App extends React.Component {
   }
 
   _loadResourcesAsync = async () => {
+    // ensures all resources are loaded async
     return Promise.all([
       Asset.loadAsync([
         require('./assets/images/robot-dev.png'),
